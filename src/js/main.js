@@ -10,12 +10,13 @@ dueño, teléfono de contacto, correo del propietario,).
 7. Eliminar una mascota del array.
 8. Crear un menú que me permita controlar cada una de estas acciones */
 
+// Creamos nuestra base de 10 mascotas
 let mascotas = [
     {
         nombre: "luna",
         especie: "perro",
         raza: "criollo",
-        edad: new Date("2014/06/15"),
+        edad: calcularAñosMascota(new Date("2014/06/15")),
         peso: "20",
         estado: "estable",
         nombrePropietario: "marlon",
@@ -27,10 +28,10 @@ let mascotas = [
         nombre: "titi",
         especie: "gato",
         raza: "criollo",
-        edad: new Date("2020/05/10"),
+        edad: calcularAñosMascota(new Date("2020/05/10")),
         peso: "6",
         estado: "estable",
-        nombrePropietario: "Marlon",
+        nombrePropietario: "marlon",
         documentoPropietario: "1007405332",
         telefonoPropietario: "3194746457",
         correoPropietario: "marlono1naranjo@gmail.com"
@@ -39,7 +40,7 @@ let mascotas = [
         nombre: "whiskers",
         especie: "gato",
         raza: "siamés",
-        edad: new Date("2019/07/03"),
+        edad: calcularAñosMascota(new Date("2019/07/03")),
         peso: "6",
         estado: "critico",
         nombrePropietario: "carolina",
@@ -51,7 +52,7 @@ let mascotas = [
         nombre: "max",
         especie: "perro",
         raza: "labrador",
-        edad: new Date("2016/08/15"),
+        edad: calcularAñosMascota(new Date("2016/08/15")),
         peso: "25",
         estado: "estable",
         nombrePropietario: "roberto",
@@ -63,7 +64,7 @@ let mascotas = [
         nombre: "fluffy",
         especie: "conejo",
         raza: "holandés",
-        edad: new Date("2020/02/20"),
+        edad: calcularAñosMascota(new Date("2020/02/20")),
         peso: "2",
         estado: "estable",
         nombrePropietario: "andres",
@@ -75,7 +76,7 @@ let mascotas = [
         nombre: "mittens",
         especie: "gato",
         raza: "angora",
-        edad: new Date("2017/11/12"),
+        edad: calcularAñosMascota(new Date("2017/11/12")),
         peso: "7",
         estado: "critico",
         nombrePropietario: "laura",
@@ -87,7 +88,7 @@ let mascotas = [
         nombre: "buddy",
         especie: "perro",
         raza: "bulldog",
-        edad: new Date("2015/03/25"),
+        edad: calcularAñosMascota(new Date("2015/03/25")),
         peso: "22",
         estado: "estable",
         nombrePropietario: "diego",
@@ -99,7 +100,7 @@ let mascotas = [
         nombre: "nibbles",
         especie: "conejo",
         raza: "mini lop",
-        edad: new Date("2018/06/08"),
+        edad: calcularAñosMascota(new Date("2018/06/08")),
         peso: "1.5",
         estado: "estable",
         nombrePropietario: "andres",
@@ -111,7 +112,7 @@ let mascotas = [
         nombre: "toby",
         especie: "perro",
         raza: "poodle",
-        edad: new Date("2019/04/30"),
+        edad: calcularAñosMascota(new Date("2019/04/30")),
         peso: "15",
         estado: "critico",
         nombrePropietario: "Maria",
@@ -123,7 +124,7 @@ let mascotas = [
         nombre: "snowball",
         especie: "conejo",
         raza: "rex",
-        edad: new Date("2016/10/20"),
+        edad: calcularAñosMascota(new Date("2016/10/20")),
         peso: "2.5",
         estado: "estable",
         nombrePropietario: "andres",
@@ -133,79 +134,152 @@ let mascotas = [
     }
 ]
 
-
+//Array para almacenar las mascotas con 10 mascotas ya regstradas
 console.log(mascotas) //
 
-// Array para almacenar las mascotas
-// Función para registrar una nueva mascota
-function registrarMascota(nombre, especie, raza, fechaNacimiento, peso, estado, nombrePropietario, documentoPropietario, telefonoPropietario, correoPropietario) {
+// Función para solicitar los datos de la nueva mascota o la acualización de los datos
+function solicitarDatosMascotas(opcion) {
+    if (opcion === 1) {
+        let nombre = String(prompt("Ingrese el nombre de la mascota")).toLowerCase()
+        console.log(nombre)
+        let especie = String(prompt("Ingrese la especie de la mascota")).toLowerCase()
+        let raza = String(prompt("Ingrese la raza de la mascota")).toLowerCase()
+        let edad = calcularAñosMascota(new Date(prompt("Ingrese la fecha de nacimiento de la mascota", "YYYY/MM/DD")))
+        let peso = String(prompt("Ingrese el peso de la mascota en kilogramos")).toLowerCase()
+        let estado = String(prompt("Ingrese el estado de la mascota (Estable o critico)")).toLowerCase()
+        let nombrePropietario = String(prompt("Ingrese el nombre del propietario de la mascota")).toLowerCase()
+        let documentoPropietario = String(prompt("Ingrese el documento del propietario de la mascota")).toLowerCase()
+        let telefonoPropietario = String(prompt("Ingrese el telefono del propietario de la mascota")).toLowerCase()
+        let correoPropietario = String(prompt("Ingrese el correo del propietario de la mascota")).toLowerCase()
+
+        registrarMascota(nombre, especie, raza, edad, peso, estado, nombrePropietario, documentoPropietario, telefonoPropietario, correoPropietario)
+    } else {
+        let nombre = String(prompt("Ingrese el nuevo nombre de la mascota")).toLowerCase()
+        console.log(nombre)
+        let especie = String(prompt("Ingrese la nueva especie de la mascota")).toLowerCase()
+        let raza = String(prompt("Ingrese la nueva raza de la mascota")).toLowerCase()
+        let edad = calcularAñosMascota(new Date(prompt("Ingrese la nueva fecha de nacimiento de la mascota", "YYYY/MM/DD")))
+        let peso = String(prompt("Ingrese el nuevo peso de la mascota en kilogramos")).toLowerCase()
+        let estado = String(prompt("Ingrese el nuevo estado de la mascota (Estable o critico)")).toLowerCase()
+        let nombrePropietario = String(prompt("Ingrese el nuevo nombre del propietario de la mascota")).toLowerCase()
+        let documentoPropietario = String(prompt("Ingrese el nuevo documento del propietario de la mascota")).toLowerCase()
+        let telefonoPropietario = String(prompt("Ingrese el nuevo telefono del propietario de la mascota")).toLowerCase()
+        let correoPropietario = String(prompt("Ingrese el nuevo correo del propietario de la mascota")).toLowerCase()
+
+        let informacionActualizada = {
+            nombre: nombre,
+            especie: especie,
+            raza: raza,
+            edad: edad,
+            peso: peso,
+            estado: estado,
+            nombrePropietario: nombrePropietario,
+            documentoPropietario: documentoPropietario,
+            telefonoPropietario: telefonoPropietario,
+            correoPropietario: correoPropietario
+        }
+        return informacionActualizada
+    }
+}
+
+// Función que se agrega la información de la nueva mascota al array llamada por la función que solicita los datos.
+function registrarMascota(nombre, especie, raza, edad, peso, estado, nombrePropietario, documentoPropietario, telefonoPropietario, correoPropietario) {
     mascotas.push({
         nombre: nombre,
         especie: especie,
         raza: raza,
-        fechaNacimiento: fechaNacimiento,
+        edad: edad,
         peso: peso,
         estado: estado,
         nombrePropietario: nombrePropietario,
         documentoPropietario: documentoPropietario,
         telefonoPropietario: telefonoPropietario,
         correoPropietario: correoPropietario
-    });
+    })
 }
 
 // Función para ver la lista de todas las mascotas registradas
 function verListaMascotas() {
-    mascotas.forEach(mascota => {
-        console.log("Nombre: " + mascota.nombre);
-        console.log("Especie: " + mascota.especie);
-        console.log("Raza: " + mascota.raza);
-        console.log("Fecha de Nacimiento: " + mascota.fechaNacimiento);
-        console.log("Peso: " + mascota.peso);
-        console.log("Estado: " + mascota.estado);
-        console.log("Nombre del Propietario: " + mascota.nombrePropietario);
-        console.log("Documento del Propietario: " + mascota.documentoPropietario);
-        console.log("Teléfono del Propietario: " + mascota.telefonoPropietario);
-        console.log("Correo del Propietario: " + mascota.correoPropietario);
-        console.log("--------------------");
-    });
+    console.log("Mostrando lista...")
+    mascotas.forEach((mascota, index) => {
+        console.log(`
+        Mascota  ${(index + 1)}
+
+Nombre: ${estiloCapitalizate(mascota.nombre)}
+Especie: ${estiloCapitalizate(mascota.especie)}
+Raza: ${estiloCapitalizate(mascota.raza)}
+Edad: ${mascota.edad}
+Peso: ${mascota.peso}
+Estado: ${estiloCapitalizate(mascota.estado)}
+Nombre del Propietario: ${estiloCapitalizate(mascota.nombrePropietario)}
+Documento del Propietario: ${mascota.documentoPropietario}
+Teléfono del Propietario: ${mascota.telefonoPropietario}
+Correo del Propietario: ${mascota.correoPropietario}
+<---------------------------------->`)
+    })
 }
 
-// Función para ver la lista de todos los dueños
+// Función para ver la lista de todos los dueños sin repetir nombres de dueños
 function verListaDueños() {
-    let dueños = mascotas.map(mascota => mascota.nombrePropietario);
-    let uniqueDueños = [...new Set(dueños)];
-    console.log("Lista de Dueños:");
-    console.log(uniqueDueños);
+    let dueños = mascotas.map(mascota => mascota.nombrePropietario)
+    let dueñosSinRepetir = []
+    for (let i = 0; i < dueños.length; i++) {
+        if (!dueñosSinRepetir.includes(dueños[i])) {
+            dueñosSinRepetir.push(dueños[i])
+        }
+    }
+    console.log("----------------- LIsta de Dueños----------------")
+    dueñosSinRepetir.forEach((dueño, index) => {
+        console.log(`${index + 1}. ${estiloCapitalizate(dueño)}`)
+    })
 }
 
 // Función para buscar una mascota por el nombre
-function buscarMascotaPorNombre(nombre) {
-    let mascotaEncontrada = mascotas.find(mascota => mascota.nombre === nombre);
-    if (mascotaEncontrada) {
-        console.log("Mascota encontrada:");
-        console.log(mascotaEncontrada);
+function buscarMascotaPorNombre() {
+    let mascotaABuscar = String(prompt("Ingresa el nombre de la mascota que deseas buscar").toLowerCase())
+    let buscarMascota = mascotas.find(mascota => mascota.nombre === mascotaABuscar)
+    console.log(typeof (buscarMascota))
+    if (mascotas.find(mascota => mascota.nombre === mascotaABuscar)) {
+
+        console.log(`
+Mascota encontrada:
+
+Nombre: ${estiloCapitalizate(buscarMascota.nombre)}
+Especie: ${estiloCapitalizate(buscarMascota.especie)}
+Raza: ${estiloCapitalizate(buscarMascota.raza)}
+Edad: ${buscarMascota.edad}
+Peso: ${buscarMascota.peso}
+Estado: ${estiloCapitalizate(buscarMascota.estado)}
+Nombre del Propietario: ${estiloCapitalizate(buscarMascota.nombrePropietario)}
+Documento del Propietario: ${buscarMascota.documentoPropietario}
+Teléfono del Propietario: ${buscarMascota.telefonoPropietario}
+Correo del Propietario: ${buscarMascota.correoPropietario}
+        `)
     } else {
-        console.log("Mascota no encontrada.");
+        console.log("Mascota no encontrada.")
     }
 }
 
 // Función para filtrar y mostrar todas las mascotas pertenecientes a un mismo dueño
-function mostrarMascotasPorDueño(documentoPropietario) {
-    let mascotasDelDueño = mascotas.filter(mascota => mascota.documentoPropietario === documentoPropietario);
-    if (mascotasDelDueño.length > 0) {
-        console.log("Mascotas del Dueño:");
+function mostrarMascotasPorDueño() {
+    let documentoPropietario = String(prompt("Ingresa el documento del dueño de las mascotas que deseas buscar").toLowerCase())
+    let mascotasDelDueño = mascotas.filter(mascota => mascota.documentoPropietario === documentoPropietario)
+    console.log(typeof (mascotasDelDueño))
+    if (mascotas.filter(mascota => mascota.documentoPropietario === documentoPropietario)) {
+        console.log(`Mascotas de ${estiloCapitalizate(mascotasDelDueño[0].nombrePropietario)}:`)
         mascotasDelDueño.forEach(mascota => {
-            console.log(mascota.nombre);
-        });
+            console.log(estiloCapitalizate(mascota.nombre))
+        })
     } else {
-        console.log("No se encontraron mascotas para este dueño.");
+        console.log("No se encontraron mascotas para este dueño.")
     }
 }
 
 // Función para actualizar la información de una mascota existente
-function actualizarInformacionMascota(nombre, nuevaInformacion) {
+function actualizarInformacionMascota(nombre) {
     let index = mascotas.findIndex(mascota => mascota.nombre === nombre)
     if (index !== -1) {
+        let nuevaInformacion = solicitarDatosMascotas()
         mascotas[index] = { ...mascotas[index], ...nuevaInformacion }
         console.log("Información de la mascota actualizada correctamente.")
     } else {
@@ -215,72 +289,83 @@ function actualizarInformacionMascota(nombre, nuevaInformacion) {
 
 // Función para eliminar una mascota del array
 function eliminarMascota(nombre) {
-    mascotas = mascotas.filter(mascota => mascota.nombre !== nombre)
-    console.log("Mascota eliminada correctamente.")
+    let indiceMascota = mascotas.findIndex(mascota => mascota.nombre === nombre)
+
+    if (indiceMascota !== -1) {
+        mascotas.splice(indiceMascota, 1);
+        console.log("Mascota eliminada correctamente.")
+    } else {
+        console.log("No se encontró la mascota.")
+    }
 }
 
-// Función para mostrar el menú de opciones
-function mostrarMenu() {
-    console.log(`
-    Por favor digita el número de la opción que deseas realizar del siguiente menú:
-
-    -------------------------------Menú-------------------------------
-    [1] Registrar una nueva mascota
-    [2] Ver la lista de todas las mascotas registradas
-    [3] Ver una lista de todos los dueños
-    [4] Buscar una mascota por el nombre
-    [5] Filtrar y mostrar todas las mascotas pertenecientes a un mismo dueño
-    [6] Actualizar la información de una mascota existente
-    [7] Eliminar una mascota de la lista
-    [8] Salir
-    `)
+// Función para darle estilo capitalizate a lo que se imprime en pantalla
+function estiloCapitalizate(texto) {
+    return (texto).charAt(0).toUpperCase() + (texto).slice(1)
 }
 
-function mostrarIndiceMascosas(mascotas) {
-    mascotas.forEach((mascota, index) => {
-        console.log(`Mascota ${index} - ${mascota.nombre}`)
-    })
+//función para pasar las fechas de nacimiento a años
+function calcularAñosMascota(fechaNacimientoMascota) {
+    let fechaActual = new Date()
+    let restaFechas = fechaActual - fechaNacimientoMascota
+    let años = restaFechas / (1000 * 60 * 60 * 24 * 365.25) //Se multiplica por 365.25 para que se tenga en cuenta los años biciestos
+    let añosRedondeados = Math.floor(años)
 
+    return añosRedondeados
 }
-// Lógica para controlar las operaciones del sistema
 function menu() {
-    let opcion;
+    let opcion
     do {
-        mostrarMenu()
-        opcion = parseInt(prompt("Ingrese el número de la opción que desea realizar:"))
+        opcion = parseInt(prompt(`
+Por favor digita el número de la opción que deseas realizar del siguiente menú:
+        -------------------------------Menú-------------------------------
+        [1] Registrar una nueva mascota
+        [2] Ver la lista de todas las mascotas registradas
+        [3] Ver una lista de todos los dueños
+        [4] Buscar una mascota por el nombre
+        [5] Filtrar y mostrar todas las mascotas pertenecientes
+         a un mismo dueño
+        [6] Actualizar la información de una mascota existente
+        [7] Eliminar una mascota de la lista
+        [8] Salir
+        `))
 
         switch (opcion) {
             case 1:
-                // Registrar una nueva mascota
-                // Pedir al usuario que ingrese los datos de la mascota y llamar a la función registrarMascota
+                /* Llamamos a la función solicitarDatosMascota para pedir al usuario que ingrese los datos de la mascota 
+                 y llamar a la función registrarMascota para agregarla */
+                solicitarDatosMascotas(opcion)
                 break
             case 2:
-                // Ver la lista de todas las mascotas registradas
+                // Opcion para ver la lista de todas las mascotas registradas
                 verListaMascotas()
                 break
             case 3:
-                // Ver una lista de todos los dueños
+                // Opcion para mostrar la lista de los dueños de mascotas sin repetirlos
                 verListaDueños()
                 break
             case 4:
-                // Buscar una mascota por el nombre
-                // Pedir al usuario que ingrese el nombre de la mascota y llamar a la función buscarMascotaPorNombre
+                // Opcion para buscar una mascota por el nombre
+                buscarMascotaPorNombre()
                 break
             case 5:
-                // Filtrar y mostrar todas las mascotas pertenecientes a un mismo dueño
-                // Pedir al usuario que ingrese el documento del propietario y llamar a la función mostrarMascotasPorDueño
+                // Opcion para filtrar las mascotas de un mismo dueño buscando por el número de documento
+                mostrarMascotasPorDueño()
                 break
             case 6:
+                let nombre = String(prompt("Ingresa el nombre de la mascota que deseas actualizar").toLowerCase())
+                actualizarInformacionMascota(nombre)
                 // Actualizar la información de una mascota existente
-                // Pedir al usuario que ingrese el nombre de la mascota y los nuevos datos, luego llamar a la función actualizarInformacionMascota
+                // Pedir al usuario que ingrese el nombre de la mascota
                 break
             case 7:
                 // Eliminar una mascota de la lista
-                
-                eliminarMascota()
+                let nombreMascotaEliminar = prompt("Ingrese el nombre de la mascota que desea eliminar:")
+                eliminarMascota(nombreMascotaEliminar)
                 break
             case 8:
-                console.log("Saliendo del sistema...")
+                // Opcion para salir del sistema
+                alert("Saliendo del sistema...")
                 break
             default:
                 console.log("Opción no válida. Por favor, seleccione una opción válida.")
@@ -290,8 +375,8 @@ function menu() {
 
 // Llamada a la función principal para iniciar el sistema
 if ((confirm("¿Quieres iniciar el programa?")) === false) {
-    console.log("Saliendo del sistema...")
+    alert("Saliendo del sistema...")
 } else {
-    console.log("Bienvenido al sistema de gestión de mascotas.")
+    alert("Bienvenido al sistema de gestión de mascotas.")
     menu()
 } 
